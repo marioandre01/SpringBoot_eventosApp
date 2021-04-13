@@ -1,0 +1,18 @@
+#Configuracao para fazer a conexao com o banco mysql executado no docker
+spring:
+  datasource:
+    #   url: jdbc:mysql://localhost:3306/anime?useSSL=false&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/eventosapp?createDatabaseIfNotExist=true # pode ser usado assim tambem
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update  #toda vez que a aplicacao for iniciada o banco de dados vai ser atualizado
+
+  # faz o log do sql fazer parte do logback do log padrao do spring, deixa mais orgazizado e a performace e melhorada, em relacao ao show-sql:true do jpa, que so printava no console
+  # aqui esta se especificando o log do SQL do pacote hibernate
+  logging:
+    level:
+      org:
+        hibernate:
+          SQL: DEBUG
