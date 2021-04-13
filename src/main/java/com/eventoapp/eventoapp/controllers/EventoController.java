@@ -4,6 +4,8 @@ import com.eventoapp.eventoapp.model.Evento;
 import com.eventoapp.eventoapp.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,6 +35,16 @@ public class EventoController {
         ModelAndView modelAndView = new ModelAndView("index");
         Iterable<Evento> eventos = eventoRepository.findAll();
         modelAndView.addObject("eventos", eventos);
+
+        return modelAndView;
+    }
+
+    @RequestMapping("/{codigo}")
+    public ModelAndView detalhesEvento(@PathVariable("codigo") long codigo) {
+        Evento evento = eventoRepository.findByCodigo(codigo);
+        ModelAndView modelAndView = new ModelAndView("evento/detalhesEvento");
+        modelAndView.addObject("evento", evento);
+        System.out.println("evento" + evento);
 
         return modelAndView;
     }
