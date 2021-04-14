@@ -26,7 +26,8 @@ public class Evento implements Serializable {
     @NotEmpty
     private String horario;
 
-    @OneToMany
+//    @OneToMany
+    @OneToMany( mappedBy="evento", cascade=CascadeType.ALL, orphanRemoval=true) //delete em cascata que é importante para não deixar a relação de pai e filhos orfãos.
     private List<Convidado> convidados;
 
     public long getCodigo() {
