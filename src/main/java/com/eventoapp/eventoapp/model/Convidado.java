@@ -3,12 +3,17 @@ package com.eventoapp.eventoapp.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+
 
 @Entity
 public class Convidado {
 
     @Id
+    @NotEmpty //o banco de dados não vai aceitar campos vazios
     private String rg;
+
+    @NotEmpty
     private String nomeConvidado;
 
     @ManyToOne
